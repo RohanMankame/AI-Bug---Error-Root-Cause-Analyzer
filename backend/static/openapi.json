@@ -45,6 +45,126 @@
         }
       }
     },
+
+"/api/reevaluate": {
+  "post": {
+    "summary": "Re-evaluate the error analysis with user feedback",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error_input": { "type": "string" },
+              "metadata": {
+                "type": "object",
+                "properties": {
+                  "detected_language": { "type": "string" },
+                  "language_confidence": { "type": "number" },
+                  "detected_platform": { "type": ["string", "null"] },
+                  "severity": { "type": "string" },
+                  "error_type": { "type": "string" },
+                  "error_message": { "type": "string" }
+                },
+                "required": [
+                  "detected_language",
+                  "language_confidence",
+                  "detected_platform",
+                  "severity",
+                  "error_type",
+                  "error_message"
+                ]
+              },
+              "analysis": {
+                "type": "object",
+                "properties": {
+                  "root_cause": { "type": "string" },
+                  "recommendations": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "preventive_suggestions": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                },
+                "required": [
+                  "root_cause",
+                  "recommendations",
+                  "preventive_suggestions"
+                ]
+              },
+              "user_message": { "type": "string" }
+            },
+            "required": ["error_input", "metadata", "analysis", "user_message"]
+          },
+          "example": {
+            "error_input": "Traceback (most recent call last): ...",
+            "metadata": {
+              "detected_language": "python",
+              "language_confidence": 0.9,
+              "detected_platform": null,
+              "severity": "high",
+              "error_type": "dependency_error",
+              "error_message": "ModuleNotFoundError: No module named 'pandas'"
+            },
+            "analysis": {
+              "root_cause": "The module 'pandas' is not installed.",
+              "recommendations": ["Run 'pip install pandas'."],
+              "preventive_suggestions": ["Add 'pandas' to your requirements.txt."]
+            },
+            "user_message": "I tried installing pandas, but now I get a DLL load failed error. Can you help me fix this new issue?"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Re-evaluated analysis with updated metadata and analysis",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error_input": { "type": "string" },
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "detected_language": { "type": "string" },
+                    "language_confidence": { "type": "number" },
+                    "detected_platform": { "type": ["string", "null"] },
+                    "severity": { "type": "string" },
+                    "error_type": { "type": "string" },
+                    "error_message": { "type": "string" }
+                  }
+                },
+                "analysis": {
+                  "type": "object",
+                  "properties": {
+                    "root_cause": { "type": "string" },
+                    "recommendations": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "preventive_suggestions": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              },
+              "required": ["error_input", "metadata", "analysis"]
+            }
+          }
+        }
+      },
+      "400": { "description": "Invalid input" },
+      "500": { "description": "Server error" }
+    }
+  }
+} ,
+
     "/api/analyze": {
       "post": {
         "summary": "Analyze an error message or stack trace",

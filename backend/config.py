@@ -10,7 +10,7 @@ class Config:
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     FLASK_ENV = os.getenv('FLASK_ENV', 'development')
     LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
-    MAX_ANALYSIS_TOKENS = int(os.getenv('MAX_ANALYSIS_TOKENS', 2000))
+    MAX_ANALYSIS_TOKENS = int(os.getenv('MAX_ANALYSIS_TOKENS', 4000))
     JSON_SORT_KEYS = False
 
 class DevelopmentConfig(Config):
