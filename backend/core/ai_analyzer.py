@@ -1,9 +1,9 @@
 from openai import OpenAI
 from typing import Dict, Any
 import json
-from src.config import get_config
-from src.utils.language_detector import LanguageDetector
-from src.utils.error_classifier import ErrorClassifier, ErrorType
+from config import get_config
+from utils.language_detector import LanguageDetector
+from utils.error_classifier import ErrorClassifier, ErrorType
 
 
 class AIAnalyzer:

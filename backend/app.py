@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
-from src.config import get_config
-from src.api.routes import api_bp
+from config import get_config
+from api.routes import api_bp
 from flask_swagger_ui import get_swaggerui_blueprint
 import logging
 

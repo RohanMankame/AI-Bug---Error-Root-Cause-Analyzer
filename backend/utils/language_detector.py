@@ -2,7 +2,9 @@ import re
 from typing import Tuple, Optional
 
 class LanguageDetector:
-    """Detect programming language from error input"""
+    """
+    Detect programming language from error input
+    Uses regex patterns to identify language-specific error messages and stack traces."""
     
     LANGUAGE_PATTERNS = {
         'python': [
@@ -87,7 +89,9 @@ class LanguageDetector:
     
     @staticmethod
     def detect_platform(error_input: str) -> Optional[str]:
-        """Detect platform/framework from error"""
+        """
+        Detect platform/framework from error
+        """
         platforms = {
             'django': r'django|DjangoRuntimeError',
             'fastapi': r'fastapi|FastAPI',

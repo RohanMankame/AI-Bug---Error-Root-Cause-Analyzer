@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from src.core.ai_analyzer import AIAnalyzer
+from core.ai_analyzer import AIAnalyzer
 from typing import Tuple
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
