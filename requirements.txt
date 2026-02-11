@@ -1,0 +1,11 @@
+Flask
+Flask-CORS
+python-dotenv
+openai
+requests
+Werkzeug
+gunicorn
+flasgger
+PyYAML
+flask_swagger_ui
+httpx
