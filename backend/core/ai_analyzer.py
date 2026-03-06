@@ -18,12 +18,8 @@ class AIAnalyzer:
     def analyze_error(self, error_input: str) -> Dict[str, Any]:
         """
         Comprehensive error analysis
-
-        Args:
-            error_input: Error message, stack trace, or log content
-
-        Returns:
-            Structured analysis result
+        error_input: Error message, stack trace, or log content
+        Structured analysis result
         """
         # Pre-analysis: detect language and classify
         language, lang_confidence = self.language_detector.detect_language(error_input)
