@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://localhost:5001/api"
+API_URL = os.environ.get("API_URL", "http://localhost:5001/api")
 
 # --- API Helper Functions ---
 def analyze_error(error_input):

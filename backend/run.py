@@ -1,8 +1,8 @@
-import sys
+import os
 from app import create_app
 
+app = create_app()
 
-#`Run the Flask app
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True, host='0.0.0.0', port=5001)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port)

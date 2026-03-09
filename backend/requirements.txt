@@ -9,3 +9,4 @@ flasgger
 PyYAML
 flask_swagger_ui
 httpx
+streamlit
