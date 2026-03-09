@@ -1,5 +1,6 @@
-import streamlit as st
+import os
 import requests
+import streamlit as st
 
 API_URL = os.environ.get("API_URL", "http://localhost:5001/api")
 
