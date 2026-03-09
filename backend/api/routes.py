@@ -89,7 +89,6 @@ def reevaluate():
         if not error_input or not metadata or not analysis or not user_message:
             return jsonify({"error": "Missing required fields"}), 400
 
-        # Build the conversation for the LLM
         messages = [
             {"role": "system", "content": (
                 "You are an expert senior software engineer and debugging assistant. "

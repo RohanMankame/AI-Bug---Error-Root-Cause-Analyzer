@@ -44,7 +44,7 @@ def main():
     st.set_page_config(page_title="AI Bug & Error Root Cause Analyzer", layout="centered")
     st.title("AI Bug & Error Root Cause Analyzer")
 
-    # 1. Initial Analysis Form
+    #  Initial Analysis Form
     with st.form("analyze_form"):
         error_input = st.text_area("Paste your error log, stack trace, or CI/CD output here:", height=180)
         submitted = st.form_submit_button("Analyze")
@@ -63,7 +63,7 @@ def main():
             except Exception as e:
                 st.error(f"Analysis Error: {e}")
 
-    # 2. Display Results if available
+    #  Display Results if available
     if "analysis" in st.session_state:
         st.divider()
         
@@ -72,13 +72,13 @@ def main():
         display_metadata(st.session_state["metadata"])
         st.divider()
 
-        # 3. Re-evaluation UI
+        #  Re-evaluation UI
         st.subheader("Re-evaluate / Ask for More")
         
         if st.session_state.get("is_reevaluated"):
             st.success("Re-evaluation complete! Results updated above.")
 
-        # Key trick to clear the text area after submission
+        # clear the text area after submission
         if "user_key" not in st.session_state:
             st.session_state["user_key"] = 0
 

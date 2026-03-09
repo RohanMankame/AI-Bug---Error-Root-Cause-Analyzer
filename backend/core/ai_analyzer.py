@@ -45,14 +45,8 @@ class AIAnalyzer:
             "analysis": ai_analysis,
         }
 
-    def _get_ai_analysis(
-        self,
-        error_input: str,
-        language: str,
-        platform: str,
-        error_type: ErrorType
-    ) -> Dict[str, Any]:
-        """Get AI-powered analysis"""
+    def _get_ai_analysis(self,error_input: str,language: str,platform: str,error_type: ErrorType) -> Dict[str, Any]:
+        """Get AI analysis"""
         prompt = self._build_prompt(error_input, language, platform, error_type)
 
         try:
@@ -76,6 +70,9 @@ class AIAnalyzer:
                 "preventive_suggestions": [],
                 "error": str(e),
             }
+        
+
+
 
     def _get_system_prompt(self) -> str:
         """
@@ -94,27 +91,21 @@ class AIAnalyzer:
             "preventive_suggestions": ["suggestion 1", "suggestion 2", ...]
         }"""
 
-    def _build_prompt(
-        self,
-        error_input: str,
-        language: str,
-        platform: str,
-        error_type: ErrorType
-    ) -> str:
+
+
+    def _build_prompt(self,error_input: str,language: str,platform: str,error_type: ErrorType) -> str:
         """Build analysis prompt"""
-        return f"""Analyze this error:
+        return f"""Analyze this error:        
+                    Language: {language}
+                    Platform: {platform}
+                    Error Type: {error_type.value}
 
-        
+                    Error Details:
+                    {error_input[:2000]}
 
-        
-Language: {language}
-Platform: {platform}
-Error Type: {error_type.value}
+                    Provide root cause, fix steps, and preventive suggestions."""
 
-Error Details:
-{error_input[:2000]}
 
-Provide root cause, fix steps, and preventive suggestions."""
 
     def _parse_analysis_response(self, response_text: str) -> Dict[str, Any]:
         """Parse AI response"""

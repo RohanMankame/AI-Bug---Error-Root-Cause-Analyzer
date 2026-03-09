@@ -59,12 +59,7 @@ class LanguageDetector:
     def detect_language(error_input: str) -> Tuple[str, float]:
         """
         Detect programming language from error input
-        
-        Args:
-            error_input: The error message or stack trace
-            
-        Returns:
-            Tuple of (language, confidence_score)
+        Returns (language, confidence_score)
         """
         if not error_input or len(error_input.strip()) == 0:
             return 'unknown', 0.0
@@ -87,6 +82,10 @@ class LanguageDetector:
         
         return best_language, min(best_score, 1.0)
     
+
+
+
+
     @staticmethod
     def detect_platform(error_input: str) -> Optional[str]:
         """
